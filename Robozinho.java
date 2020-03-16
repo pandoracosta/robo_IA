@@ -95,8 +95,9 @@ public class Robozinho extends AdvancedRobot
 	public void onHitWall(HitWallEvent e) {
 		// Replace the next line with any behavior you would like
 		back(20);
+		turnRadarRight(evnt.Bearing);
 		turnGunRight(evnt.Bearing);
-		turnGunRight(evnt.Bearing);
+		turnRight(evnt.Bearing);
 
 	}	
 }
