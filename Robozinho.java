@@ -67,6 +67,7 @@ public class Robozinho extends AdvancedRobot
 		}
 	}
 	//run: Mova-se pelas paredes
+	//Obs: precisamos otimizar a movimentação do radar e do canhão para o centro do campo de batalha, 
 	/*public void run() {
 		// definindo Cores
 		setBodyColor(Color.black);
