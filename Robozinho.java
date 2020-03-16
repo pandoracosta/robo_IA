@@ -169,5 +169,11 @@ public class Robozinho extends AdvancedRobot
 		turnGunRight(evnt.getBearing());
 		turnRight(evnt.getBearing());
 
-	}	
+	}
+	//Estrategia para revidar tiros (depois de ser acertado) ou evasiva, 
+	//é possivel descobrir a possivel localização do inimigo e mover o canhão? se sim, mover o canhão em direção ao inimigo
+	//mas antes se mover para evitar outros disparos
+	public void OnHitByBullet(HitByBulletEvent evnt){
+		
+	}
 }
