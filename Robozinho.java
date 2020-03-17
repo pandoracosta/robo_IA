@@ -13,7 +13,7 @@ public class Robo2 extends Robot{
        	
         // Robot main loop
         while(true) {
-			ahead(100); //anda pra frente 100 pixels
+		ahead(100); //anda pra frente 100 pixels
     		turnGunRight(360); //scan
     		back(75); //volta 75 pixels
     		turnGunRight(360); //scan            			
@@ -41,10 +41,10 @@ public class Robo2 extends Robot{
         	fire(4);
    	 	else if(distance > 400 && distance <= 600)
         	fire(3);
-    	else if(distance > 200 && distance <= 400)
-        	fire(2);
-    	else if(distance < 200)
-        	fire(1);
+    		else if(distance > 200 && distance <= 400)
+        		fire(2);
+    		else if(distance < 200)
+        		fire(1);
 		if(getEnergy() < 1) { //energia MUITO baixa, diminui muito a força
 			fire(0.1);
 		}
