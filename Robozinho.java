@@ -104,6 +104,7 @@ public class Robo3 extends AdvancedRobot
 		
 	}
 	*/
+	
 	 public void onHitWall(HitWallEvent e) {
 	        double bearing = e.getBearing(); // pega o bearing 
 	    	turnRight(-bearing); // afasta da parede (vira o corpo)
