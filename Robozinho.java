@@ -89,7 +89,22 @@ public class Robo3 extends AdvancedRobot
 			ahead(100);
 		}
 	}
-	
+	/* definir alvo ao colidir
+	 * public void onHitRobot(HitRobotEvent e) {
+		// robo na frente, anda pra tras
+		if (e.getBearing() > -90 && e.getBearing() < 90) {
+			back(100);
+		} // robo atras, chega pra frente
+		else {
+			ahead(100);
+		}
+		gunTurnAmt = normalRelativeAngle(e.getBearing() + (getHeading() - getRadarHeading()));
+		setTurnGunRight(gunTurnAmt);
+		setFire(1);
+		setBack(50);
+		
+	}
+	*/
 	 public void onHitWall(HitWallEvent e) {
 	        double bearing = e.getBearing(); // pega o bearing 
 	    	turnRight(-bearing); // afasta da parede (vira o corpo)
