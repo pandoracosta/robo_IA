@@ -101,7 +101,6 @@ public class Robo3 extends AdvancedRobot
 		gunTurnAmt = normalRelativeAngle(e.getBearing() + (getHeading() - getRadarHeading()));
 		setTurnGunRight(gunTurnAmt);
 		setFire(1);
-		setBack(50);
 		
 	}
 	*/
