@@ -33,12 +33,19 @@ public class Robo3 extends AdvancedRobot
 	 * onScannedRobot: What to do when you see another robot
 	 */
 	public void onScannedRobot(ScannedRobotEvent e) {
-		// Replace the next line with any behavior you would like
+		
+		// e.getVelocity() * Math.sin(e.getHeadingRadians() - absoluteBearing) é a velocidade lateral do robo
+		// note que é uma aproximaçao ja que asin(velocidade lateral/bulletSpeed) é mais ou menos igual a velocidade lateral/bulletSpeed
+		// assuma que o inimigo vai continuar paralelo a velocidade lateral
+		// é escolhido 13.0 para a bulletSpeed por conta da distorçao de tirar o asin
+		
 		double absoluteBearing = getHeadingRadians() + e.getBearingRadians();
 		setTurnGunRightRadians(Utils.normalRelativeAngle(absoluteBearing - 
     		getGunHeadingRadians() + (e.getVelocity() * Math.sin(e.getHeadingRadians() - 
     		absoluteBearing) / 13.0)));
 		double distance = e.getDistance(); 
+		
+		// heuristicas de tiro a depender da distancia
     	if(distance > 800) 
         	setFire(5);
     	else if(distance > 600 && distance <= 800)
@@ -49,25 +56,44 @@ public class Robo3 extends AdvancedRobot
         	setFire(2);
     	else if(distance < 200)
         	setFire(1);
+			
+		// energia baixa, diminui a forca da bala
 		if(getEnergy() < 1) 
 			setFire(0.1);
 		else if(getEnergy() < 10) 
 			setFire(1.0);
+			
 	}
 
 	/**
 	 * onHitByBullet: What to do when you're hit by a bullet
 	 */
-	public void onHitByBullet() {
+	public void onHitByBullet(HitByBulletEvent e) {
 		// Replace the next line with any behavior you would like
-		back(10);
+		double bearing = e.getBearing(); 
+    	if(getEnergy() < 100){ // energia baixa, se afasta do inimigo
+        	turnRight(-bearing); 
+        	ahead(100); 
+    	}
+   		else{
+        	turnRight(360); // scan
+			}
 	}
 	
-	/**
-	 * onHitWall: What to do when you hit a wall
-	 */
-	public void onHitWall() {
-		// Replace the next line with any behavior you would like
-		back(20);
-	}	
+	public void onHitRobot(HitRobotEvent e) {
+		// robo na frente, anda pra tras
+		if (e.getBearing() > -90 && e.getBearing() < 90) {
+			back(100);
+		} // robo atras, chega pra frente
+		else {
+			ahead(100);
+		}
+	}
+	
+	 public void onHitWall(HitWallEvent e) {
+	        double bearing = e.getBearing(); // pega o bearing 
+	    	turnRight(-bearing); // afasta da parede (vira o corpo)
+	    	ahead(100); //anda 
+	    }   
+	
 }
